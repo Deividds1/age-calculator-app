@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./App.css"
-import button from '/icon-arrow.svg';
+import iconButton from '/icon-arrow.svg';
 
 function App() {
   const [buttonActive, setButtonActive] = useState(false);
@@ -11,38 +11,33 @@ function App() {
   const [age, setAge] = useState({ years: 0, months: 0, days: 0 });
 
   const calculateAge = () => {
-    setButtonActive(!buttonActive);
-    const today = new Date();
-    let calculatedAge = {};
-
-    let yearsDiff = today.getFullYear() - birthYear;
-
-    const monthDiff = (today.getMonth() + 1) - birthMonth;
-
-
-    const daysDiff = today.getDate() - birthDay;
-
-
-    if (daysDiff < 0) {
-      const prevMonthLastDay = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-      calculatedAge.days = prevMonthLastDay + daysDiff;
-      yearsDiff = monthDiff <= 0 ? yearsDiff - 1 : yearsDiff;
+    if (birthDay > 31 || birthDay < 1 || birthMonth > 12 || birthMonth < 1) {
+      alert("fecha incorrecta");
     } else {
-      calculatedAge.days = daysDiff;
-    }
+      setButtonActive(!buttonActive);
+      const today = new Date();
 
-    if (monthDiff < 0) {
-      calculatedAge.months = 12 + monthDiff;
-      calculatedAge.years = yearsDiff - 1;
-    } else if (monthDiff === 0) {
-      calculatedAge.months = 11;
-      calculatedAge.years = yearsDiff;
-    } else {
-      calculatedAge.months = monthDiff;
-      calculatedAge.years = yearsDiff;
-    }
 
-    setAge(calculatedAge);
+      let calculatedAge = {
+        years: today.getFullYear() - birthYear,
+        months: today.getMonth() + 1 - birthMonth,
+        days: today.getDate() - birthDay
+      };
+
+      if (calculatedAge.days < 0) {
+        const daysInLastMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+        calculatedAge.days += daysInLastMonth;
+        calculatedAge.months--;
+      }
+
+      if (calculatedAge.months < 0) {
+        calculatedAge.months += 12;
+        calculatedAge.years--;
+      }
+
+      setAge(calculatedAge);
+      console.log(age);
+    }
   };
 
   return (
@@ -76,13 +71,13 @@ function App() {
 
         <div className='button-container'>
           <div className={buttonActive ? "purple" : "button"} onClick={calculateAge}>
-            <img src={button} alt="button" />
+            <img src={iconButton} alt="button" />
           </div>
           <div className='line'></div>
         </div>
 
 
-        {age.years > 0 && (
+        {age.years >= 0 && (
           <div className='age-container'>
             <p>
               <span className='number-container'>{age.years}</span> years
