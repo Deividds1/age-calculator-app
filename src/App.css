@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.App {
+  background-color: hsl(0, 0%, 94%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1000px;
+  background-color: white;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom-right-radius: 80px;
+}
+
+.input-container {
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.date-container {
+  width: 28%;
+
+}
+
+input {
+  padding: 0 10px;
+  font-weight: bolder;
+  font-size: 25px;
+  border-style: none;
+  width: 100%;
+  height: 3em;
+  border-radius: 5px;
+  border: 2px solid hsl(0, 0%, 86%);
+}
+
+.date-container p {
+  font-weight: bolder;
+  color: hsl(0, 1%, 44%);
+}
+
+.button-container {
+  width: 84%;
+  position: relative;
+  padding: 60px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: hsl(0, 0%, 86%);
+}
+
+.button {
+  background-color: black;
+  width: fit-content;
+  padding: 15px;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+}
+
+.purple {
+  background-color: hsl(259, 100%, 65%);
+  width: fit-content;
+  padding: 15px;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+}
+
+img {
+  width: 30px;
+  height: 30px;
+}
+
+span {
+  color: hsl(259, 100%, 65%);
+
+}
+
+.age-container {
+  text-align: left;
+  width: 80%;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+input:focus {
+  outline-color: hsl(259, 100%, 65%);
+}
+
+@media (min-width: 600px) {
+  .button-container {
+
+    display: flex;
+    align-items: center;
+    justify-content: right;
+  }
+}
